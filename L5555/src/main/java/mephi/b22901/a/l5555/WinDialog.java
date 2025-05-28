@@ -36,17 +36,66 @@ public class WinDialog extends JDialog {
     /**
      * Создание и размещение компонентов: метка с сообщением и кнопка.
      */
-    private void initializeComponents() {
-        JLabel messageLabel = new JLabel("Вы одержали победу в локации №" + parentFrame.getCurrentLocation() + " из " + parentFrame.getTotalLocations() + " !", SwingConstants.CENTER);
-        messageLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        add(messageLabel, BorderLayout.CENTER);
+private void initializeComponents() {
+    // Основная панель с черным фоном
+    JPanel mainPanel = new JPanel(new BorderLayout(0, 20)); // Добавляем вертикальные отступы
+    mainPanel.setBackground(new Color(0, 0, 0));
+    mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Внешние отступы
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        btnNext = new JButton("Дальше");
-        buttonPanel.add(btnNext);
-        add(buttonPanel, BorderLayout.SOUTH);
+    // Сообщение о победе (стилизованное)
+    JLabel messageLabel = new JLabel(
+        "Вы одержали победу в локации №" + parentFrame.getCurrentLocation() + 
+        " из " + parentFrame.getTotalLocations() + " !", 
+        SwingConstants.CENTER
+    );
+    messageLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+    messageLabel.setForeground(new Color(200, 0, 0));
+
+    // Центральная панель для изображения
+    JPanel centerPanel = new JPanel(new BorderLayout());
+    centerPanel.setBackground(new Color(0, 0, 0));
+
+    // Изображение победы
+    try {
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/Win_Round.gif"));
+        // Масштабируем изображение, если нужно (например, до 400x300)
+        Image scaledImage = originalIcon.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
+        JLabel winImage = new JLabel(new ImageIcon(scaledImage));
+        winImage.setHorizontalAlignment(SwingConstants.CENTER);
+        centerPanel.add(winImage, BorderLayout.CENTER);
+    } catch (Exception e) {
+        JLabel noImageLabel = new JLabel("ПОБЕДА!", SwingConstants.CENTER);
+        noImageLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        noImageLabel.setForeground(new Color(255, 215, 0));
+        centerPanel.add(noImageLabel, BorderLayout.CENTER);
     }
 
+    // Кнопка "Дальше" (стилизованная)
+    btnNext = new JButton("ДАЛЬШЕ");
+    btnNext.setBackground(new Color(200, 0, 0));
+    btnNext.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+    btnNext.setForeground(new Color(255, 215, 0));
+    btnNext.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
+    btnNext.setFocusPainted(false);
+    btnNext.setPreferredSize(new Dimension(200, 40));
+
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setBackground(new Color(0, 0, 0));
+    buttonPanel.add(btnNext);
+
+    // Компоновка элементов
+    mainPanel.add(messageLabel, BorderLayout.NORTH);
+    mainPanel.add(centerPanel, BorderLayout.CENTER);
+    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+    // Установка основной панели
+    add(mainPanel);
+    
+    // Настройки окна
+    pack(); // Автоматически подбирает размер под содержимое
+    setLocationRelativeTo(null); // Центрирует окно на экране
+    setResizable(false); // Запрещает изменять размер окна
+}
     private void setupActions() {
         btnNext.addActionListener(this::onNextClicked);
     }
