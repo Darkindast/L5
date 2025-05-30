@@ -10,8 +10,6 @@ package mephi.b22901.a.l5555;
 public class EnemyFactory {
     /**
      * Создаёт объект врага соответствующего типа с предопределёнными характеристиками.
-     *
-     * @param type тип врага, указанный в {@link EnemyType}
      * @return экземпляр {@link Player}, представляющий врага
      * @throws IllegalArgumentException если передан неизвестный тип врага
      */
