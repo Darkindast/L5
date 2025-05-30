@@ -118,7 +118,7 @@ public void onNextClicked(ActionEvent e) {
         } 
     } else {
         int playerScore = parentFrame.getHuman().getPoints();
-        int position = getTop10Position(playerScore);
+        int position = getTop10Position(playerScore)+1;
 
         if (position == -1) {
             JOptionPane.showMessageDialog(null, 
@@ -132,7 +132,7 @@ public void onNextClicked(ActionEvent e) {
             
             JTextField nameField = new JTextField();
             Object[] message = {
-                "Поздравляем!\nВы попали в топ-10 на позицию #" + position+1 + "!",
+                "Поздравляем!\nВы попали в топ-10 на позицию #" + position + "!",
                 "Ваши очки: " + playerScore,
                 "Введите ваше имя:", nameField
             };

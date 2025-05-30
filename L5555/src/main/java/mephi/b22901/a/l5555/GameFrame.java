@@ -27,10 +27,9 @@ public class GameFrame extends JFrame {
     private JButton btnItems;
     private JButton btnDebuff;
     private JProgressBar playerHpBar, enemyHpBar;
-    private JLabel lblPlayerDamage, lblPlayerLevel;
-    private JLabel lblEnemyDamage, lblEnemyLevel;
+    private JLabel lblPlayerDamage, lblPlayerLevel, lblPlayerHealth;
+    private JLabel lblEnemyDamage, lblEnemyLevel, lblEnemyHealth;
     private JLabel playerScoreLabel, playerExpLabel;
-    private JTextArea logArea;
     private JLabel turnLabel = new JLabel(), playerStunLabel, enemyStunLabel;
     private JLabel playerIconLabel, enemyIconLabel, humanNameLabel, enemyNameLabel;
     
@@ -123,7 +122,9 @@ public class GameFrame extends JFrame {
     add(buttonPanel, BorderLayout.SOUTH);
 }
 
-// Вспомогательный метод для создания стилизованных кнопок
+/**
+    * Вспомогательный метод для создания стилизованных кнопок.
+ */
 private JButton createMkButton(String text) {
     JButton button = new JButton(text);
     button.setFont(new Font("Arial", Font.BOLD, 16));
@@ -258,10 +259,15 @@ private JButton createMkButton(String text) {
     lblPlayerDamage = new JLabel("DAMAGE: " + human.getDamage(), SwingConstants.CENTER);
     lblPlayerDamage.setFont(mkFont.deriveFont(16f));
     lblPlayerDamage.setForeground(Color.RED);
+    
+    lblPlayerHealth = new JLabel("HEALTH: " + human.getHealth(), SwingConstants.CENTER);
+    lblPlayerHealth.setFont(mkFont.deriveFont(16f));
+    lblPlayerHealth.setForeground(Color.GREEN);
 
     
     playerPanel.add(lblPlayerLevel);
     playerPanel.add(lblPlayerDamage);
+    playerPanel.add(lblPlayerHealth);
     
     playerStunLabel = new JLabel("STUNNED: " + human.isStunned(), SwingConstants.CENTER);
     playerStunLabel.setFont(mkFont.deriveFont(14f));
@@ -287,7 +293,7 @@ private JButton createMkButton(String text) {
     enemyHpBar = new JProgressBar(0, enemy.getMaxHealth());
     enemyHpBar.setValue(enemy.getHealth());
     enemyHpBar.setStringPainted(true);
-    enemyHpBar.setForeground(Color.RED);
+    enemyHpBar.setForeground(Color.GREEN);
     enemyHpBar.setBackground(Color.DARK_GRAY);
     enemyHpBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
     enemyPanel.add(enemyHpBar);
@@ -300,8 +306,13 @@ private JButton createMkButton(String text) {
     lblEnemyDamage.setFont(mkFont.deriveFont(16f));
     lblEnemyDamage.setForeground(Color.RED);
     
+    lblEnemyHealth = new JLabel("HEALTH: " + enemy.getHealth(), SwingConstants.CENTER);
+    lblEnemyHealth.setFont(mkFont.deriveFont(16f));
+    lblEnemyHealth.setForeground(Color.GREEN);
+    
     enemyPanel.add(lblEnemyLevel);
     enemyPanel.add(lblEnemyDamage);
+    enemyPanel.add(lblEnemyHealth);
     
     enemyStunLabel = new JLabel("STUNNED: " + enemy.isStunned(), SwingConstants.CENTER);
     enemyStunLabel.setFont(mkFont.deriveFont(14f));
@@ -387,7 +398,8 @@ private JButton createMkButton(String text) {
         lblPlayerLevel.setText("Уровень: " + human.getLevel());
         lblEnemyDamage.setText("Урон: " + enemy.getDamage());
         lblEnemyLevel.setText("Уровень: " + enemy.getLevel());
-        
+        lblPlayerHealth.setText("Здоровье: " + human.getHealth());
+        lblEnemyHealth.setText("Здоровье: " + enemy.getHealth());
         playerStunLabel.setText("Игрок оглушен: " + human.isStunned());
         enemyStunLabel.setText("Враг оглушен: "+ enemy.isStunned());
         
