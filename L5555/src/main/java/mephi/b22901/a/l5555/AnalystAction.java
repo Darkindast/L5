@@ -7,7 +7,7 @@ package mephi.b22901.a.l5555;
 import mephi.b22901.a.l5555.ActionType;
 
 /**
- * Класс {@code CharacterAction} содержит статические методы,
+ * Класс {@code AnalystAction} содержит статические методы,
  * определяющие поведение врагов в бою на основе анализа действий игрока.
  * Используется для реализации ИИ-противников с адаптивной стратегией.
  * <p>
@@ -15,14 +15,13 @@ import mephi.b22901.a.l5555.ActionType;
  * соответственно выбирают тип действия (атака, защита, лечение, дебафф).
  * </p>
  * 
- * @author Andrey
  */
-public class CharacterAction {
+public class AnalystAction {
      /**
      * Выбирает тип действия (атака или защита) на основе вероятностей
      * и поведения игрока (количества атак и защит).
      * <p>
-     * Для первых 15 действий применяется базовое вероятностное поведение,
+     * Для первых 10 действий применяется базовое вероятностное поведение,
      * после чего поведение врага подстраивается под стиль игрока.
      * </p>
      *
@@ -36,7 +35,7 @@ public class CharacterAction {
         int defendCount = human.getDefendCount();
         int total = attackCount + defendCount;
 
-        if (total < 15) {
+        if (total < 10) {
             return Math.random() < attackProbability / 100.0 ? ActionType.ATTACK : ActionType.DEFEND;
         } else{
             double playerAggression = (double) attackCount / total;

@@ -93,7 +93,7 @@ public class Fight {
             isPlayersTurn = true;
             return log.toString();
         } else {
-            ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
+            ActionType enemyBehaviour = AnalystAction.ChooseEnemyBehavior(human, enemy);
             log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
 
             switch (enemyBehaviour) {
@@ -167,7 +167,7 @@ public class Fight {
             log.append("-----------------\n");
             return log.toString();
         } else {
-            ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
+            ActionType enemyBehaviour = AnalystAction.ChooseEnemyBehavior(human, enemy);
             log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
             switch (enemyBehaviour) {
                 case ATTACK:
@@ -268,7 +268,7 @@ public class Fight {
             isPlayersTurn = true;
             return log.toString();
         } else {
-            ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
+            ActionType enemyBehaviour = AnalystAction.ChooseEnemyBehavior(human, enemy);
             log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
             double debuffProbability = Math.random();
             switch (enemyBehaviour) {
