@@ -4,36 +4,16 @@
  */
 package mephi.b22901.a.l5555;
 
-import mephi.b22901.a.l5555.LocationDialog;
-import mephi.b22901.a.l5555.BattleFrame;
-import mephi.b22901.a.l5555.Game;
-import mephi.b22901.a.l5555.Human;
-import mephi.b22901.a.l5555.Player;
-import java.util.List;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+
 /**
  * Главное окно приложения — стартовое меню игры.
  * Здесь игрок может начать новую игру или посмотреть таблицу результатов.
  * Окно содержит две кнопки: "Начать новую игру" и "Посмотреть таблицу результатов".
- * 
- * @author Арсений
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.List;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.List;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.List;
@@ -51,7 +31,7 @@ public class MainFrame extends JFrame {
     Human human = null;
 
     public MainFrame() {
-        setTitle("Игра: Битва героев");
+    
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(800, 600)); // Увеличено
         setLocationRelativeTo(null);
@@ -82,10 +62,7 @@ public class MainFrame extends JFrame {
         jButtonShowRecords.setBackground(orangeColor);
         jButtonShowRecords.setForeground(Color.BLACK);
 
-        jLabelGame = new JLabel("Битва героев");
-        jLabelGame.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
-        jLabelGame.setForeground(orangeColor);
-        jLabelGame.setHorizontalAlignment(SwingConstants.CENTER);
+   
 
         jLabelGameImage = new JLabel();
         URL iconUrl = this.getClass().getResource("/Logofull123.png");
@@ -105,13 +82,13 @@ public class MainFrame extends JFrame {
     jPanelStart.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30)); // внешние отступы
 
     // Центрирование всех компонентов по горизонтали
-    jLabelGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+   
     jLabelGameImage.setAlignmentX(Component.CENTER_ALIGNMENT);
     jButtonStartGame.setAlignmentX(Component.CENTER_ALIGNMENT);
     jButtonShowRecords.setAlignmentX(Component.CENTER_ALIGNMENT);
 
     jPanelStart.add(Box.createVerticalGlue());  // растягивается вверх
-    jPanelStart.add(jLabelGame);
+  
     jPanelStart.add(Box.createRigidArea(new Dimension(0, 20)));
     jPanelStart.add(jLabelGameImage);
     jPanelStart.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -148,7 +125,7 @@ public class MainFrame extends JFrame {
 
     private void startFirstLocation(Human human, int currentLocation) {
         List<Player> enemies = game.generateEnemiesForLocation(human.getLevel());
-        BattleFrame battleFrame = new BattleFrame(human, enemies, game, currentLocation, selectedLocations);
+        GameFrame battleFrame = new GameFrame(human, enemies, game, currentLocation, selectedLocations);
         battleFrame.setVisible(true);
     }
 

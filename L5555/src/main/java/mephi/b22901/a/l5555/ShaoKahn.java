@@ -6,8 +6,6 @@ package mephi.b22901.a.l5555;
 /**
  * Класс, представляющий босса Shao Kahn.
  * Характеристики зависят от уровня игрока + 2.
- * 
- * @author Арсений
  */
 public class ShaoKahn extends Player{
     

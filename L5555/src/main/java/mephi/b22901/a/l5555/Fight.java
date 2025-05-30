@@ -4,7 +4,7 @@
  */
 package mephi.b22901.a.l5555;
 
-import mephi.b22901.a.l5555.ActionType;
+
 import static mephi.b22901.a.l5555.ActionType.ATTACK;
 import static mephi.b22901.a.l5555.ActionType.DEBUFF;
 import static mephi.b22901.a.l5555.ActionType.DEFEND;
@@ -14,7 +14,7 @@ import static mephi.b22901.a.l5555.ActionType.HEAL;
  * Он управляет очередностью ходов, обработкой различных действий и их эффектов,
  * а также ведёт текстовый журнал боя.
  * 
- * @author Арсений
+ * @author Andrey
  */
 public class Fight {
 

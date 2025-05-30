@@ -6,8 +6,6 @@ package mephi.b22901.a.l5555;
 /**
  * Класс, представляющий малое зелье лечения.
  * Восстанавливает 25% от максимального здоровья.
- * 
- * @author Arseniy
  */
 public class SmallHealthPotion implements Item{
 

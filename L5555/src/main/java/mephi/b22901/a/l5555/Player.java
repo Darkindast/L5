@@ -4,14 +4,11 @@
  */
 package mephi.b22901.a.l5555;
 
-import mephi.b22901.a.l5555.ActionType;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * Абстрактный класс, представляющий базового игрока (персонажа или врага) в игре.
  * Содержит общие характеристики и поведение, наследуется конкретными классами персонажей.
- * 
- * @author Арсений
  */
 public abstract class Player {
     

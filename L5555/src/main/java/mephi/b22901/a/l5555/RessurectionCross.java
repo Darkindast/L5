@@ -7,8 +7,6 @@ package mephi.b22901.a.l5555;
  * Класс, представляющий предмет "Крест воскрешения".
  * Реализует интерфейс Item.
  * Воскрешение восстанавливает небольшой процент здоровья.
- * 
- * @author Arseniy
  */
 public class RessurectionCross implements Item{
 

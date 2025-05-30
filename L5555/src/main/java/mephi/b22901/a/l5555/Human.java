@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 /**
  * Класс Human расширяет Player и представляет игрока-человека в игре.
- * Включает дополнительные поля, такие как очки, опыт, количество побед и инвентарь.
+ * Включает дополнительные поля, такие как очки, опыт, количество побед и инвентарь.\
+ *  
  */
 public class Human extends Player{
     
@@ -54,7 +52,7 @@ public class Human extends Player{
     
     @Override
     public String getName(){
-        return "Kitana";
+        return "Milena";
     }
     
     @Override
@@ -64,7 +62,7 @@ public class Human extends Player{
 
     @Override
     public int getReceivedPoints() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     public int getRequiredExperience() {
@@ -77,12 +75,12 @@ public class Human extends Player{
 
     @Override
     public int returnExperienceForWin() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void updateCharacteristicsBasedOnLevel(int playerLevel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
 }

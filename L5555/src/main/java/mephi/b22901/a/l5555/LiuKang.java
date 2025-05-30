@@ -6,8 +6,6 @@ package mephi.b22901.a.l5555;
 /**
  * Класс персонажа Liu Kang, наследник Player.
  * Определяет уникальные характеристики и поведение Liu Kang.
- * 
- * @author Арсений
  */
 public class LiuKang extends Player {
     

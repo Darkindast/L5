@@ -15,8 +15,6 @@ import java.util.List;
  * Данные загружаются из Excel через ExcelManager.
  * В окне есть JTable для отображения результатов и кнопка "Закрыть".
  * При закрытии окна создаётся и показывается главное окно MainFrame.
- * 
- * @author Арсений
  */
 public class ScoreboardDialog extends JDialog {
 
@@ -40,7 +38,7 @@ public class ScoreboardDialog extends JDialog {
      * Загружает данные из ExcelManager и формирует массив для JTable.
      */
     private void initializeComponents() {
-        List<String[]> scoreDataList = ExcelManager.loadTop10TableFromExcel();
+        List<String[]> scoreDataList = ExcelProvider.loadTop10TableFromExcel();
         String[][] scoreData = new String[scoreDataList.size()][3];
         for (int i = 0; i < scoreDataList.size(); i++) {
             scoreData[i][0] = String.valueOf(i + 1);

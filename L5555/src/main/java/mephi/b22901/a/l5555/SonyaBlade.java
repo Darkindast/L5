@@ -7,8 +7,6 @@ package mephi.b22901.a.l5555;
  * Класс, представляющий персонажа Sonya Blade.
  * Наследуется от абстрактного класса Player.
  * Реализует уникальные характеристики и методы персонажа.
- * 
- * @author Арсений
  */
 public class SonyaBlade extends Player{
     /**

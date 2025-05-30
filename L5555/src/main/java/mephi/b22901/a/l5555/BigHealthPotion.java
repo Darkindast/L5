@@ -11,8 +11,6 @@ package mephi.b22901.a.l5555;
  * <p>
  * Используется в бою или инвентаре игрока для восстановления здоровья.
  * </p>
- * 
- * @author Arseniy
  */
 public class BigHealthPotion implements Item {
 

@@ -9,8 +9,6 @@ package mephi.b22901.a.l5555;
  * <p>
  * Используется для инкапсуляции логики создания объектов врагов с начальными параметрами.
  * </p>
- * 
- * @author Арсений
  */
 public class EnemyFactory {
     /**
@@ -20,17 +18,17 @@ public class EnemyFactory {
      * @return экземпляр {@link Player}, представляющий врага
      * @throws IllegalArgumentException если передан неизвестный тип врага
      */
-    public static Player createEnemy(EnemyType type) {
+    public static Player createEnemy(int type) {
         switch (type) {
-            case TANK:
+            case 1:
                 return new Baraka(0, 100, 12);
-            case MAGICIAN:
+            case 2:
                 return new SubZero(0, 85, 16);
-            case FIGHTER:
+            case 3:
                 return new LiuKang(0, 70, 20);
-            case SOLDIER:
+            case 4:
                 return new SonyaBlade(0, 80, 16);
-            case BOSS:
+            case 5:
                 return new ShaoKahn(3, 145, 30);
             default:
                 throw new IllegalArgumentException("Такого типа соперника нет: " + type);

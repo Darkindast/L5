@@ -13,8 +13,6 @@ package mephi.b22901.a.l5555;
  *     <li>{@link #HEAL} — восстановление очков здоровья.</li>
  *     <li>{@link #DEBUFF} — ослабление</li>
  * </ul>
- * 
- * @author Arseniy
  */
 public enum ActionType {
     ATTACK,

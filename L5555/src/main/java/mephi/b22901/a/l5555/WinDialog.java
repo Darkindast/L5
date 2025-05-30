@@ -11,19 +11,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Collections;
+
 /**
  * Диалоговое окно, которое появляется при победе игрока на локации.
  * Показывает сообщение о победе и кнопку "Дальше" для перехода к следующей локации
  * или завершению игры с выводом результата и возможностью занести его в топ-10.
- * 
- * @author Арсений
  */
 public class WinDialog extends JDialog {
 
     private JButton btnNext;
-    private BattleFrame parentFrame;
+    private GameFrame parentFrame;
     
-    public WinDialog(BattleFrame parentFrame) {
+    public WinDialog(GameFrame parentFrame) {
         super(parentFrame, "Победа!", true);
         this.parentFrame = parentFrame;
         setSize(500, 200);
@@ -58,7 +57,6 @@ private void initializeComponents() {
     // Изображение победы
     try {
         ImageIcon originalIcon = new ImageIcon(getClass().getResource("/Win_Round.gif"));
-        // Масштабируем изображение, если нужно (например, до 400x300)
         Image scaledImage = originalIcon.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT);
         JLabel winImage = new JLabel(new ImageIcon(scaledImage));
         winImage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -105,47 +103,55 @@ private void initializeComponents() {
      * Если есть еще локации — создается новое окно битвы с новой локацией.
      * Если все локации пройдены — отображается итог и возможность сохранить результат.
      */
-    public void onNextClicked(ActionEvent e) {
-        dispose();
+public void onNextClicked(ActionEvent e) {
+    dispose();
+    if (parentFrame.getCurrentLocation() < parentFrame.getTotalLocations()) {
         if (parentFrame.getCurrentLocation() < parentFrame.getTotalLocations()) {
             parentFrame.getHuman().setDamage(parentFrame.getHuman().getMaxDamage());
-            BattleFrame nextBattle = new BattleFrame(
-                    parentFrame.getHuman(), 
-                    parentFrame.getGame().generateEnemiesForLocation(parentFrame.getHuman().getLevel()), 
-                    parentFrame.getGame(), 
-                    parentFrame.getCurrentLocation() + 1, 
-                    parentFrame.getTotalLocations());
+            GameFrame nextBattle = new GameFrame(
+            parentFrame.getHuman(), 
+            parentFrame.getGame().generateEnemiesForLocation(parentFrame.getHuman().getLevel()), 
+            parentFrame.getGame(), 
+            parentFrame.getCurrentLocation() + 1, 
+            parentFrame.getTotalLocations());
             nextBattle.setVisible(true);
-        } else {
-            int playerScore = parentFrame.getHuman().getPoints();
-            int position = getTop10Position(playerScore);
+        } 
+    } else {
+        int playerScore = parentFrame.getHuman().getPoints();
+        int position = getTop10Position(playerScore);
 
-            if (position == -1) {
-                JOptionPane.showMessageDialog(null, 
-                    "Вы прошли все локации!\nК сожалению, вы не попали в топ-10.\nВаш результат: " + playerScore + " очков.",
-                    "Конец игры", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JTextField nameField = new JTextField();
-                Object[] message = {
-                    "Поздравляем!\nВы попали в топ-10 на позицию #" + position + "!",
-                    "Ваши очки: " + playerScore,
-                    "Введите ваше имя:", nameField
-                };
-                int option = JOptionPane.showConfirmDialog(null, message, "Топ-10", JOptionPane.OK_CANCEL_OPTION);
-                if (option == JOptionPane.OK_OPTION) {
-                    String playerName = nameField.getText().trim();
-                    if (!playerName.isEmpty()) {
-                        ExcelManager.writeToExcel(playerName, playerScore); // вызов без реализации
-                        JOptionPane.showMessageDialog(null, "Результат сохранён! Спасибо за игру!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Имя не введено. Результат не сохранён.");
-                    }
+        if (position == -1) {
+            JOptionPane.showMessageDialog(null, 
+                "Вы прошли все локации!\nК сожалению, вы не попали в топ-10.\nВаш результат: " + playerScore + " очков.",
+                "Конец игры", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            
+            
+            List<Integer> topScores = ExcelProvider.loadTop10ScoresFromExcel();
+
+            
+            JTextField nameField = new JTextField();
+            Object[] message = {
+                "Поздравляем!\nВы попали в топ-10 на позицию #" + position+1 + "!",
+                "Ваши очки: " + playerScore,
+                "Введите ваше имя:", nameField
+            };
+            
+            int option = JOptionPane.showConfirmDialog(null, message, "Топ-10", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                String playerName = nameField.getText().trim();
+                if (!playerName.isEmpty()) {
+                    ExcelProvider.writeToExcel(playerName, playerScore);
+                    JOptionPane.showMessageDialog(null, "Результат сохранён! Спасибо за игру!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Имя не введено. Результат не сохранён.");
                 }
             }
-            MainFrame mainMenu = new MainFrame();
-            mainMenu.setVisible(true);
         }
+        MainFrame mainMenu = new MainFrame();
+        mainMenu.setVisible(true);
     }
+}
     
      /**
      * Метод определения позиции игрока в топ-10 по результатам.
@@ -154,24 +160,35 @@ private void initializeComponents() {
      * @param playerScore текущий результат игрока
      * @return позиция в топ-10, или -1 если нет
      */
-    private int getTop10Position(int playerScore) {
-        List<Integer> topScores = ExcelManager.loadTop10ScoresFromExcel();
-        int position = 0;
-        if (playerScore > getMin(topScores)){
-            for (int i = 0; i < topScores.size(); i++) {
-                if (playerScore > topScores.get(i)) {
-                    position = i + 1;
-                    break;
-                }
-            }
-            if (position == -1) {
-                position = topScores.size() + 1;
-            }
-        } else {
-            position = -2;
-        }
-        return position + 1;
+   private int getTop10Position(int playerScore) {
+    List<Integer> topScores = ExcelProvider.loadTop10ScoresFromExcel();
+    
+    // Если таблица пустая, сразу возвращаем 1 (первая позиция)
+    if (topScores.isEmpty()) {
+        return 1;
     }
+    
+    int minScore = getMin(topScores);
+    int position = -1; // По умолчанию - не в топ-10
+    
+    // Если результат игрока больше минимального в топе
+    if (playerScore > minScore) {
+        // Ищем позицию для вставки
+        for (int i = 0; i < topScores.size(); i++) {
+            if (playerScore > topScores.get(i)) {
+                position = i + 1; // Позиции нумеруются с 1
+                break;
+            }
+        }
+        
+        // Если не нашли позицию (должен быть в конце списка)
+        if (position == -1) {
+            position = topScores.size() + 1;
+        }
+    }
+    
+    return position;
+}
     
     /**
      * Получить минимальное значение из списка.

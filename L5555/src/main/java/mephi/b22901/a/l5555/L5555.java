@@ -17,8 +17,6 @@ import javax.swing.SwingUtilities;
  * чтобы создание и отображение главного окна происходило
  * в потоке обработки событий Swing (Event Dispatch Thread),
  * что является хорошей практикой при работе с GUI на Swing.
- * 
- * @author Арсений
  */
 public class L5555{
      /**

@@ -13,16 +13,14 @@ import java.awt.event.ActionEvent;
  * Наследуется от JDialog и блокирует родительское окно BattleFrame до закрытия.
  * 
  * Позволяет выбрать предмет из списка и применить его действие.
- * 
- * @author Арсений
  */
 public class InventoryDialog extends JDialog {
 
     private JList<String> itemsList;
     private JButton btnUseItem;
-    private BattleFrame parentFrame; 
+    private GameFrame parentFrame; 
 
-    public InventoryDialog(BattleFrame parent) {
+    public InventoryDialog(GameFrame parent) {
         super(parent, "Мешок предметов", true);
         this.parentFrame = parent;
         setSize(400, 300);

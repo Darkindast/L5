@@ -6,8 +6,6 @@ package mephi.b22901.a.l5555;
 /**
  * Вспомогательны класс для отображения результатов.
  * Вспомогательный класс для хранения пары "имя игрока - очки".
- *
- * @author Arseniy
  */
 class PlayerScoreEntry {
     String name;

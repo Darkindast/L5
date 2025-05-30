@@ -10,8 +10,6 @@ import java.util.Random;
 /**
  * Класс Game отвечает за создание и управление врагами и игроком,
  * а также за инициализацию боя.
- * 
- * @author Арсения
  */
 public class Game {
     
@@ -68,10 +66,10 @@ public class Game {
      * Вызывается перед генерацией врагов для локации.
      */
     public static void setEnemies() {
-        enemies[0] = EnemyFactory.createEnemy(EnemyType.TANK);      
-        enemies[1] = EnemyFactory.createEnemy(EnemyType.MAGICIAN);      
-        enemies[2] = EnemyFactory.createEnemy(EnemyType.FIGHTER);      
-        enemies[3] = EnemyFactory.createEnemy(EnemyType.SOLDIER);   
+        enemies[0] = EnemyFactory.createEnemy(1);      
+        enemies[1] = EnemyFactory.createEnemy(2);      
+        enemies[2] = EnemyFactory.createEnemy(3);      
+        enemies[3] = EnemyFactory.createEnemy(4);   
     }
     
     /**
@@ -105,7 +103,7 @@ public class Game {
      * @return объект босса
      */
     public Player makeBoss(){
-        return EnemyFactory.createEnemy(EnemyType.BOSS);
+        return EnemyFactory.createEnemy(5);
     }
     
     /**

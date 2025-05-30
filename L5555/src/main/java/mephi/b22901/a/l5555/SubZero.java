@@ -7,8 +7,6 @@ package mephi.b22901.a.l5555;
  * Класс, представляющий персонажа Sub-Zero.
  * Наследуется от абстрактного класса Player.
  * Определяет уникальные характеристики и методы для Sub-Zero.
- * 
- * @author Арсений
  */
 public class SubZero extends Player{
     /**

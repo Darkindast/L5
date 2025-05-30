@@ -4,15 +4,7 @@
  */
 package mephi.b22901.a.l5555;
 
-import mephi.b22901.a.l5555.InventoryDialog;
-import mephi.b22901.a.l5555.ActionType;
-import mephi.b22901.a.l5555.BigHealthPotion;
-import mephi.b22901.a.l5555.Game;
-import mephi.b22901.a.l5555.Player;
-import mephi.b22901.a.l5555.ShaoKahn;
-import mephi.b22901.a.l5555.Human;
-import mephi.b22901.a.l5555.RessurectionCross;
-import mephi.b22901.a.l5555.SmallHealthPotion;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -24,22 +16,11 @@ import javax.swing.border.TitledBorder;
  * Класс {@code BattleFrame} представляет собой окно пошагового боя между игроком (объектом {@link Human})
  * и списком врагов ({@link Player}). Отображает здоровье, урон, уровень и состояния игроков, 
  * а также предоставляет кнопки для действий игрока: атака, защита, дебафф и использование предметов.
- * 
+ *
  * <p>Класс также обрабатывает переход к следующему врагу после победы, получение опыта, предметов,
  * и обработку проигрыша с возможностью воскрешения.</p>
- *
- * <p>Ключевые функции:</p>
- * <ul>
- *     <li>Обработка логики боя (атака, защита, дебафф)</li>
- *     <li>Обновление интерфейса в реальном времени</li>
- *     <li>Отображение опыта, состояния, побед, уровней и получаемых предметов</li>
- *     <li>Переход между врагами в рамках одной локации</li>
- *     <li>Уровневый рост игрока</li>
- * </ul>
- * 
- * @author 
  */
-public class BattleFrame extends JFrame {
+public class GameFrame extends JFrame {
 
     private JButton btnAttack;
     private JButton btnDefend;
@@ -63,7 +44,7 @@ public class BattleFrame extends JFrame {
     private JLabel lastMessageLabel;
     
 
-    public BattleFrame(Human human, List<Player> enemyList, Game game, int currentLocation, int totalLocations) {
+    public GameFrame(Human human, List<Player> enemyList, Game game, int currentLocation, int totalLocations) {
         super("Битва");
         this.human = human;
         human.setHealth(human.getMaxHealth());
@@ -255,7 +236,7 @@ private JButton createMkButton(String text) {
     
     humanNameLabel = new JLabel(human.getName(), SwingConstants.CENTER);
     humanNameLabel.setFont(mkFont.deriveFont(20f));
-    humanNameLabel.setForeground(Color.WHITE);
+    humanNameLabel.setForeground(Color.BLACK);
     playerPanel.add(humanNameLabel);
     
     playerIconLabel = new JLabel(new ImageIcon(getClass().getResource(human.getIconSource())));
@@ -272,11 +253,12 @@ private JButton createMkButton(String text) {
     
     lblPlayerLevel = new JLabel("LEVEL: " + human.getLevel(), SwingConstants.CENTER);
     lblPlayerLevel.setFont(mkFont.deriveFont(16f));
-    lblPlayerLevel.setForeground(Color.WHITE);
+    lblPlayerLevel.setForeground(Color.BLUE);
     
     lblPlayerDamage = new JLabel("DAMAGE: " + human.getDamage(), SwingConstants.CENTER);
     lblPlayerDamage.setFont(mkFont.deriveFont(16f));
-    lblPlayerDamage.setForeground(Color.WHITE);
+    lblPlayerDamage.setForeground(Color.RED);
+
     
     playerPanel.add(lblPlayerLevel);
     playerPanel.add(lblPlayerDamage);
@@ -284,7 +266,7 @@ private JButton createMkButton(String text) {
     playerStunLabel = new JLabel("STUNNED: " + human.isStunned(), SwingConstants.CENTER);
     playerStunLabel.setFont(mkFont.deriveFont(14f));
     playerStunLabel.setForeground(Color.YELLOW);
-    playerPanel.add(playerStunLabel);
+//    playerPanel.add(playerStunLabel);
 
     // Панель врага
     JPanel enemyPanel = new JPanel();
@@ -295,7 +277,7 @@ private JButton createMkButton(String text) {
     
     enemyNameLabel = new JLabel(enemy.getName(), SwingConstants.CENTER);
     enemyNameLabel.setFont(mkFont.deriveFont(20f));
-    enemyNameLabel.setForeground(Color.WHITE);
+    enemyNameLabel.setForeground(Color.BLACK);
     enemyPanel.add(enemyNameLabel);
     
     enemyIconLabel = new JLabel(new ImageIcon(getClass().getResource(enemy.getIconSource())));
@@ -312,11 +294,11 @@ private JButton createMkButton(String text) {
     
     lblEnemyLevel = new JLabel("LEVEL: " + enemy.getLevel(), SwingConstants.CENTER);
     lblEnemyLevel.setFont(mkFont.deriveFont(16f));
-    lblEnemyLevel.setForeground(Color.WHITE);
+    lblEnemyLevel.setForeground(Color.BLUE);
     
     lblEnemyDamage = new JLabel("DAMAGE: " + enemy.getDamage(), SwingConstants.CENTER);
     lblEnemyDamage.setFont(mkFont.deriveFont(16f));
-    lblEnemyDamage.setForeground(Color.WHITE);
+    lblEnemyDamage.setForeground(Color.RED);
     
     enemyPanel.add(lblEnemyLevel);
     enemyPanel.add(lblEnemyDamage);
@@ -324,7 +306,7 @@ private JButton createMkButton(String text) {
     enemyStunLabel = new JLabel("STUNNED: " + enemy.isStunned(), SwingConstants.CENTER);
     enemyStunLabel.setFont(mkFont.deriveFont(14f));
     enemyStunLabel.setForeground(Color.YELLOW);
-    enemyPanel.add(enemyStunLabel);
+//    enemyPanel.add(enemyStunLabel);
 
     playersPanel.add(playerPanel);
     playersPanel.add(enemyPanel);
@@ -611,7 +593,7 @@ private JButton createMkButton(String text) {
     /**
     * Проверяет условие поражения игрока.
     * Если здоровье игрока <= 0, пытается использовать крест воскрешения.
-    * Если не удалось воскреснуть — сбрасывает битву.
+     Если не удалось воскреснуть — сбрасывает битву.
     */
     private void checkLoseCondition() {
         if (human.getHealth() <= 0) {

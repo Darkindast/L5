@@ -15,7 +15,7 @@ import mephi.b22901.a.l5555.ActionType;
  * соответственно выбирают тип действия (атака, защита, лечение, дебафф).
  * </p>
  * 
- * @author Арсений
+ * @author Andrey
  */
 public class CharacterAction {
      /**
