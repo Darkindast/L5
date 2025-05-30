@@ -65,13 +65,13 @@ public class Fight {
      */
     private String processPlayersStun(Player human, Player enemy){
         StringBuilder log = new StringBuilder();
-        log.append("Игрок пропускает ход из-за оглушения!\n");
+        log.append(human.getName()+ " пропускает ход из-за оглушения!\n");
         ActionType enemyBehaviour = ActionType.ATTACK;
-        log.append("Противник выбрал: ").append(enemyBehaviour).append("\n");
+        log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
         human.setHealth(human.getHealth() - enemy.attackEnemy());
         human.setStunned(false);
         isPlayersTurn = false;
-        log.append("-----------------\n");
+   
         return log.toString();
     }
     
@@ -87,27 +87,26 @@ public class Fight {
     private String processPlayersAttack(Player human, Player enemy) {
         StringBuilder log = new StringBuilder();    
         if (!isPlayersTurn && enemy.isStunned()) {
-            log.append("Противник пропускает ход из-за оглушения!\n");
+            log.append(enemy.getName()+ " пропускает ход из-за оглушения!\n");
             enemy.setHealth(enemy.getHealth() - (int) (human.attackEnemy()));
             enemy.setStunned(false);
             isPlayersTurn = true;
-            log.append("-----------------\n");
             return log.toString();
         } else {
             ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
-            log.append("Противник выбрал: ").append(enemyBehaviour).append("\n");
+            log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
 
             switch (enemyBehaviour) {
                 case DEFEND:
                     if (isPlayersTurn){
                         human.setHealth(human.getHealth() - (int) (enemy.attackEnemy() * 0.5));
                         enemy.defendFromEnemy();
-                        log.append("Противник контратаковал!\n");
+                        log.append(enemy.getName()+ " контратаковал!\n");
                         isPlayersTurn = false;
                     } else {
                         human.attackEnemy();
                         enemy.defendFromEnemy();
-                        log.append("Игрок атаковал, но противник заблокировал удар!\n");
+                        log.append(human.getName()+ " атаковал, но противник заблокировал удар!\n");
                         isPlayersTurn = true;
                     }
                     break;
@@ -115,11 +114,11 @@ public class Fight {
                 case ATTACK:
                     if (isPlayersTurn){
                         enemy.setHealth(enemy.getHealth() - human.attackEnemy());
-                        log.append("Игрок атаковал, противник получил урон!\n");
+                        log.append(human.getName()+ " атаковал, противник получил урон!\n");
                         isPlayersTurn = false;
                     } else {
                         human.setHealth(human.getHealth() - enemy.attackEnemy());
-                        log.append("Противник атаковал, игрок получил урон!\n");
+                        log.append(enemy.getName()+ " атаковал, игрок получил урон!\n");
                         isPlayersTurn = true;
                     }
                     break;
@@ -132,23 +131,22 @@ public class Fight {
                         enemy.setHealth(enemy.getHealth() - human.attackEnemy()*2);
                         isPlayersTurn = true;
                     }
-                    log.append("Противник получил двойной урон!\n");
+                    log.append(enemy.getName()+ " получил двойной урон!\n");
                     break;
                 
                 case DEBUFF:
                     if (isPlayersTurn){
                         enemy.setHealth((int) (enemy.getHealth() - human.attackEnemy() * 1.15));
-                        log.append("Враг попытался ослабить игрока, но игрок нанес увеличенный урон!\n");
+                        log.append(enemy.getName()+ " попытался ослабить игрока, но игрок нанес увеличенный урон!\n");
                         isPlayersTurn = false;
                     } else {
                         enemy.setHealth((int) (enemy.getHealth() - human.attackEnemy() * 1.15));
-                        log.append("Враг попытался ослабить игрока, но игрок нанес увеличенный урон!\n");
+                        log.append(enemy.getName()+ " попытался ослабить игрока, но игрок нанес увеличенный урон!\n");
                         isPlayersTurn = true;
                     }             
                     break;
             }
         }
-        log.append("-----------------\n");
         return log.toString();
     }
     
@@ -163,14 +161,14 @@ public class Fight {
     private String processPlayersDefend(Player human, Player enemy) {
         StringBuilder log = new StringBuilder();
         if (!isPlayersTurn && enemy.isStunned()) {
-            log.append("Противник пропускает ход из-за оглушения!\n");
+            log.append(enemy.getName()+ " пропускает ход из-за оглушения!\n");
             enemy.setStunned(false);
             isPlayersTurn = true;
             log.append("-----------------\n");
             return log.toString();
         } else {
             ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
-            log.append("Противник выбрал: ").append(enemyBehaviour).append("\n");
+            log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
             switch (enemyBehaviour) {
                 case ATTACK:
                     if (isPlayersTurn){
@@ -184,17 +182,17 @@ public class Fight {
                             } else {
                                 enemy.attackEnemy();
                                 human.defendFromEnemy();
-                                log.append("Противник атаковал, но игрок заблокировал удар!\n");
+                                log.append(enemy.getName()+ " атаковал, но игрок заблокировал удар!\n");
                             }
                         } else {
                             enemy.attackEnemy();
                             human.defendFromEnemy();
-                             log.append("Противник атаковал, но игрок заблокировал удар!\n");
+                             log.append(enemy.getName() + " атаковал, но игрок заблокировал удар!\n");
                         }
                         isPlayersTurn = false;
                     } else {
                         enemy.setHealth(enemy.getHealth() - (int) (human.attackEnemy() * 0.5));
-                        log.append("Игрок контратаковал!\n");
+                        log.append(human.getName() + " контратаковал!\n");
                         human.defendFromEnemy();
                         isPlayersTurn = true;
                     }
@@ -204,13 +202,13 @@ public class Fight {
                     if (isPlayersTurn){
                         if (Math.random() < 0.5) {
                             enemy.setStunned(true);
-                            log.append("Противник оглушён!\n");
+                            log.append(enemy.getName()+ " оглушён!\n");
                         }
                         isPlayersTurn = false;
                     } else {
                         if (Math.random() < 0.5) {
                             human.setStunned(true);
-                            log.append("Игрок оглушён!\n");
+                            log.append(human.getName()+ " оглушён!\n");
                         }
                         isPlayersTurn = true;
                     }
@@ -224,7 +222,7 @@ public class Fight {
                         enemy.setHealth((int) (enemy.getHealth() + (enemy.getMaxHealth() - enemy.getHealth()) * 0.5));
                         isPlayersTurn = true;
                     }
-                    log.append("Противник восстановил здоровье!\n");
+                    log.append(enemy.getName()+ " восстановил здоровье!\n");
                     break;
                     
                 case DEBUFF:
@@ -232,24 +230,23 @@ public class Fight {
                     if (isPlayersTurn){
                         if(enemyDebuffProbability < 0.75){
                             human.setDebuff(enemy);
-                            log.append("Игрок ослаблен на ").append(enemy.getLevel()).append(" ходов!").append("\n");
+                            log.append(human.getName()+ " ослаблен на ").append(enemy.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Игрок не был ослаблен!\n");
+                            log.append(human.getName()+ " не был ослаблен!\n");
                         }
                         isPlayersTurn = false;
                     } else {
                         if(enemyDebuffProbability < 0.75){
                             human.setDebuff(enemy);
-                            log.append("Игрок ослаблен на ").append(enemy.getLevel()).append(" ходов!").append("\n");
+                            log.append(human.getName()+ " ослаблен на ").append(enemy.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Игрок не был ослаблен!\n");
+                            log.append(human.getName()+ " не был ослаблен!\n");
                         }
                         isPlayersTurn = true;
                     }
                     break;
             }
         }
-        log.append("-----------------\n");
         return log.toString();
     }
     
@@ -264,33 +261,32 @@ public class Fight {
     private String processPlayersDebuff(Player human, Player enemy) {
         StringBuilder log = new StringBuilder();
         if (!isPlayersTurn && enemy.isStunned()) {
-            log.append("Противник пропускает ход из-за оглушения!\n");
+            log.append(enemy.getName()+ " пропускает ход из-за оглушения!\n");
             enemy.setDebuff(human);
-            log.append("Враг ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
+            log.append(enemy.getName()+ " ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
             enemy.setStunned(false);
             isPlayersTurn = true;
-            log.append("-----------------\n");
             return log.toString();
         } else {
             ActionType enemyBehaviour = CharacterAction.ChooseEnemyBehavior(human, enemy);
-            log.append("Противник выбрал: ").append(enemyBehaviour).append("\n");
+            log.append(enemy.getName()+ " выбрал: ").append(enemyBehaviour).append("\n");
             double debuffProbability = Math.random();
             switch (enemyBehaviour) {
                 case DEFEND:
                     if (isPlayersTurn){
                         if(debuffProbability < 0.75){
                             enemy.setDebuff(human);
-                            log.append("Враг ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
+                            log.append(enemy.getName()+ " ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Враг не был ослаблен!\n");
+                            log.append(enemy.getName()+ " не был ослаблен!\n");
                         }
                         isPlayersTurn = false;
                     } else {
                         if(debuffProbability < 0.75){
                             enemy.setDebuff(human);
-                            log.append("Враг ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
+                            log.append(enemy.getName()+ " ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Враг не был ослаблен!\n");
+                            log.append(enemy.getName()+ " не был ослаблен!\n");
                         }
                         isPlayersTurn = true;
                     }
@@ -299,11 +295,11 @@ public class Fight {
                 case ATTACK:
                     if (isPlayersTurn){
                         human.setHealth((int) (human.getHealth() - enemy.attackEnemy() * 1.15));
-                        log.append("Игрок попытался ослабить врага, но враг нанес увеличенный урон!\n");
+                        log.append(human.getName()+" попытался ослабить врага, но враг нанес увеличенный урон!\n");
                         isPlayersTurn = false;
                     } else {
                         human.setHealth((int) (human.getHealth() - enemy.attackEnemy() * 1.15));
-                        log.append("Игрок попытался ослабить врага, но враг нанес увеличенный урон!\n");
+                        log.append(human.getName()+" попытался ослабить врага, но враг нанес увеличенный урон!\n");
                         isPlayersTurn = true;
                     }
                     break;
@@ -313,18 +309,18 @@ public class Fight {
                         if(debuffProbability < 0.75){
                             enemy.setDebuff(human);
                             enemy.setHealth((int) (enemy.getHealth() + (enemy.getMaxHealth() - enemy.getHealth()) * 0.5));
-                            log.append("Враг восстановил здоровье и был ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
+                            log.append(enemy.getName()+" восстановил здоровье и был ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Враг не был ослаблен и восстановил здоровье!\n");
+                            log.append(enemy.getName()+" не был ослаблен и восстановил здоровье!\n");
                         }
                         isPlayersTurn = false;
                     } else {
                         if(debuffProbability < 0.75){
                             enemy.setDebuff(human);
                             enemy.setHealth((int) (enemy.getHealth() + (enemy.getMaxHealth() - enemy.getHealth()) * 0.5));
-                            log.append("Враг восстановил здоровье и был ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
+                            log.append(enemy.getName()+" восстановил здоровье и был ослаблен на ").append(human.getLevel()).append(" ходов!").append("\n");
                         } else {
-                            log.append("Враг не был ослаблен и восстановил здоровье!\n");
+                            log.append(enemy.getName()+" не был ослаблен и восстановил здоровье!\n");
                         }
                         isPlayersTurn = true;
                     }
@@ -332,16 +328,16 @@ public class Fight {
                     
                 case DEBUFF:
                     if (isPlayersTurn){
-                        log.append("Игрок и враг попытались ослабить друг друга => никто не был ослаблен!\n");
+                        log.append(human.getName()+ " и " + enemy.getName()+ " попытались ослабить друг друга => никто не был ослаблен!\n");
                         isPlayersTurn = false;
                     } else {
-                        log.append("Игрок и враг попытались ослабить друг друга => никто не был ослаблен!\n");
+                        log.append(human.getName()+ " и " + enemy.getName()+ " попытались ослабить друг друга => никто не был ослаблен!\n");
                         isPlayersTurn = true;
                     }
                     break;
             }
         }
-        log.append("-----------------\n");
+
         return log.toString();
     }
 }
