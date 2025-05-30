@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 
@@ -559,7 +556,7 @@ private JButton createMkButton(String text) {
             human.getInventory().addBigHealthPotion(new BigHealthPotion());
             JOptionPane.showMessageDialog(this, "Вам выпало: большое зелье лечения!");
         } else if (ressurectionCrossDropP < 0.05 * probabilityMultiplier) {
-            human.getInventory().addRessurectionCross(new RessurectionCross());
+            human.getInventory().addRessurectionCross(new ResurrectionCross());
             JOptionPane.showMessageDialog(this, "Вам выпал: крест возрождения!");
         }
     }
@@ -627,7 +624,7 @@ private JButton createMkButton(String text) {
     */
     private boolean tryRessurection() {
         if (human.getInventory().getRessurectionCrossCount() > 0) {
-            RessurectionCross ressurectionCross = human.getInventory().getRessurectionCross();
+            ResurrectionCross ressurectionCross = human.getInventory().getRessurectionCross();
             int restored = (int) Math.ceil(human.getMaxHealth() * ressurectionCross.getHealKF());
             if (restored < 1) restored = 1;
             human.setHealth(restored);

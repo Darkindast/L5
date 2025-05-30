@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 
@@ -128,16 +125,54 @@ public void onNextClicked(ActionEvent e) {
             
             
             List<Integer> topScores = ExcelProvider.loadTop10ScoresFromExcel();
-
-            
             JTextField nameField = new JTextField();
+            // Стилизация текста в стиле Mortal Kombat
+            String htmlMessage = "<html><div style='text-align: center;'>"
+                + "<p style='color: #ff0000; font-size: 16px; font-weight: bold; text-shadow: 2px 2px 4px #000000;'>Поздравляем!</p>"
+                + "<p style='color: #ffcc00; font-size: 14px;'>Вы попали в топ-10 на позицию #" + position + "!</p>"
+                + "<p style='color: #ffffff; font-size: 14px;'>Ваши очки: " + playerScore + "</p>"
+                + "<p style='color: #ffcc00; font-size: 14px;'>Введите ваше имя:</p>"
+                + "</div></html>";
+
             Object[] message = {
-                "Поздравляем!\nВы попали в топ-10 на позицию #" + position + "!",
-                "Ваши очки: " + playerScore,
-                "Введите ваше имя:", nameField
+                htmlMessage, 
+                nameField
             };
+
+           
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.setBackground(new Color(30, 30, 30));
+            panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+            JLabel label = new JLabel(htmlMessage);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(label, BorderLayout.NORTH);
+            panel.add(nameField, BorderLayout.CENTER);
+
+            // Стилизация кнопок
+            UIManager.put("OptionPane.background", new Color(30, 30, 30));
+            UIManager.put("Panel.background", new Color(30, 30, 30));
+            UIManager.put("Button.background", new Color(70, 70, 70));
+            UIManager.put("Button.foreground", Color.WHITE);
+            UIManager.put("Button.focus", new Color(255, 0, 0));
+            UIManager.put("TextField.background", new Color(50, 50, 50));
+            UIManager.put("TextField.foreground", Color.WHITE);
+            UIManager.put("TextField.caretForeground", Color.RED);
+
+            int option = JOptionPane.showConfirmDialog(null, panel, "Топ-10", 
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            // Восстанавливаем стандартные настройки
+            UIManager.put("OptionPane.background", null);
+            UIManager.put("Panel.background", null);
+            UIManager.put("Button.background", null);
+            UIManager.put("Button.foreground", null);
+            UIManager.put("Button.focus", null);
+            UIManager.put("TextField.background", null);
+            UIManager.put("TextField.foreground", null);
+            UIManager.put("TextField.caretForeground", null);
             
-            int option = JOptionPane.showConfirmDialog(null, message, "Топ-10", JOptionPane.OK_CANCEL_OPTION);
+            
             if (option == JOptionPane.OK_OPTION) {
                 String playerName = nameField.getText().trim();
                 if (!playerName.isEmpty()) {
@@ -148,7 +183,7 @@ public void onNextClicked(ActionEvent e) {
                 }
             }
         }
-        MainFrame mainMenu = new MainFrame();
+        FirstFrame mainMenu = new FirstFrame();
         mainMenu.setVisible(true);
     }
 }

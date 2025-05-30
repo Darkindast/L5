@@ -52,12 +52,12 @@ public class Human extends Player{
     
     @Override
     public String getName(){
-        return "Milena";
+        return "Millena";
     }
     
     @Override
     public String getIconSource(){
-        return "/subzero.gif";
+        return "/Millena.gif";
     }
 
     @Override

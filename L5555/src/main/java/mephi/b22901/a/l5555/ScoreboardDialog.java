@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 
@@ -21,9 +18,9 @@ public class ScoreboardDialog extends JDialog {
     private JButton btnClose;
     private JTable table;
     private String[] columnNames = {"Место", "Имя", "Результат"};
-    private final MainFrame mainFrame;
+    private final FirstFrame mainFrame;
 
-    public ScoreboardDialog(MainFrame parent) {
+    public ScoreboardDialog(FirstFrame parent) {
         super(parent, "Таблица рекордов", true);
         setSize(500, 300);
         setLocationRelativeTo(parent);

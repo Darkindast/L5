@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 
@@ -18,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.List;
 
-public class MainFrame extends JFrame {
+public class FirstFrame extends JFrame {
 
     private JButton jButtonStartGame;
     private JButton jButtonShowRecords;
@@ -30,7 +27,7 @@ public class MainFrame extends JFrame {
     public static Game game = new Game();
     Human human = null;
 
-    public MainFrame() {
+    public FirstFrame() {
     
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(800, 600)); // Увеличено

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 import javax.swing.*;
@@ -37,23 +34,23 @@ public class LocationDialog extends JDialog {
     }
 
     private void initComponents() {
-        // Панель
+        
         jPanelChoseLocation = new JPanel();
         jPanelChoseLocation.setBackground(Color.BLACK);
 
-        // Метка
+   
         jLabelCountLocation = new JLabel("Выберите количество локаций");
         jLabelCountLocation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
         jLabelCountLocation.setForeground(new Color(255, 165, 0));
         jLabelCountLocation.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Поле ввода
+
         jTextFieldCountLocation = new JTextField();
         jTextFieldCountLocation.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
         jTextFieldCountLocation.setHorizontalAlignment(JTextField.CENTER);
         jTextFieldCountLocation.setPreferredSize(new Dimension(100, 30));
 
-        // Кнопка
+
         jButtonChoseLocation = new JButton("Начать");
         jButtonChoseLocation.setBackground(new Color(255, 165, 0));
         jButtonChoseLocation.setForeground(new Color(51, 51, 51));

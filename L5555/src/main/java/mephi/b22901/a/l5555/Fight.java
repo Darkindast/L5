@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 
@@ -14,7 +11,6 @@ import static mephi.b22901.a.l5555.ActionType.HEAL;
  * Он управляет очередностью ходов, обработкой различных действий и их эффектов,
  * а также ведёт текстовый журнал боя.
  * 
- * @author Andrey
  */
 public class Fight {
 

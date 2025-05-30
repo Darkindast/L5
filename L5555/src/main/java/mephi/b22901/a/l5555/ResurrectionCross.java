@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 /**
  * Класс, представляющий предмет "Крест воскрешения".
  * Реализует интерфейс Item.
  * Воскрешение восстанавливает небольшой процент здоровья.
  */
-public class RessurectionCross implements Item{
+public class ResurrectionCross implements Item{
 
     @Override
     public String getName() {

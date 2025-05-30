@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 import java.util.Stack;
@@ -14,7 +11,7 @@ public class Inventory {
     
     private Stack<BigHealthPotion>  bigHealthPotions;
     private  Stack<SmallHealthPotion>  smallHealthPotions;
-    private Stack<RessurectionCross>  ressurectionCrosses;
+    private Stack<ResurrectionCross>  ressurectionCrosses;
    
     public Inventory(){
        bigHealthPotions = new Stack<>();
@@ -32,8 +29,8 @@ public class Inventory {
         return smallHealthPotion;
     }
    
-    public RessurectionCross getRessurectionCross(){
-        RessurectionCross ressurectionCross = ressurectionCrosses.pop();
+    public ResurrectionCross getRessurectionCross(){
+        ResurrectionCross ressurectionCross = ressurectionCrosses.pop();
         return ressurectionCross;
     }
    
@@ -57,7 +54,7 @@ public class Inventory {
         smallHealthPotions.push(potion);
     }
 
-    public void addRessurectionCross(RessurectionCross cross) {
+    public void addRessurectionCross(ResurrectionCross cross) {
         ressurectionCrosses.push(cross);
     }
     

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mephi.b22901.a.l5555;
 
 /**
@@ -21,11 +18,7 @@ public class Baraka extends Player {
         super(level, health, damage);
     }
 
-    /**
-     * Возвращает имя персонажа.
-     *
-     * @return строка "Baraka"
-     */
+ 
     @Override
     public String getName() {
         return "Baraka";

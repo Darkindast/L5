@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package mephi.b22901.a.l5555;
 
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Andrey
- */
 /**
  * Главный класс запуска приложения.
  * 
@@ -26,7 +20,7 @@ public class L5555{
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MainFrame mainFrame = new MainFrame();
+            FirstFrame mainFrame = new FirstFrame();
             mainFrame.setVisible(true);
         });
     }
